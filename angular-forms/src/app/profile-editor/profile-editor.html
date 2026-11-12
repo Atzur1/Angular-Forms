@@ -1,0 +1,43 @@
+<section>
+  <h2>Perfil</h2>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label for="first-name">First Name:</label>
+    <input id="first-name" type="text" formControlName="firstName" />
+
+    <label for="last-name">Last Name:</label>
+    <input id="last-name" type="text" formControlName="lastName" />
+
+    <div formGroupName="address">
+      <h3>Address</h3>
+
+      <label for="street">Street:</label>
+      <input id="street" type="text" formControlName="street" />
+
+      <label for="city">City:</label>
+      <input id="city" type="text" formControlName="city" />
+
+      <label for="state">State:</label>
+      <input id="state" type="text" formControlName="state" />
+
+      <label for="zip">Zip Code:</label>
+      <input id="zip" type="text" formControlName="zip" />
+    </div>
+
+    <div formArrayName="aliases">
+      <h3>Aliases</h3>
+      <button type="button" (click)="addAlias()">+ Add another alias</button>
+
+      @for (alias of aliases.controls; track $index; let i = $index) {
+        <div>
+          <label for="alias-{{ i }}">Alias:</label>
+          <input id="alias-{{ i }}" type="text" [formControlName]="i" />
+        </div>
+      }
+    </div>
+
+    <p>Form Status: {{ profileForm.status }}</p>
+
+    <button type="button" (click)="updateProfile()">Update Profile</button>
+    <button type="submit" [disabled]="!profileForm.valid">Enviar</button>
+  </form>
+</section>

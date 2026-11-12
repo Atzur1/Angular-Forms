@@ -1,0 +1,9 @@
+<section>
+  <h2>Color favorito</h2>
+  <label>
+    Color favorito:
+    <input type="text" [formControl]="favoriteColorControl" />
+  </label>
+  <button type="button" (click)="updateName()">Update Name</button>
+  <p>Valor: {{ favoriteColorControl.value }}</p>
+</section>
